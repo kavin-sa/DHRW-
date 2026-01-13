@@ -281,3 +281,36 @@ For technical support:
 ---
 
 **DHRW Platform** - Revolutionizing healthcare data management with blockchain technology and AI-powered insights. 🏥✨
+
+# ThinkRoot as Our Development Base
+
+We leveraged ThinkRoot's no-code platform to rapidly prototype and build our Medical Records Portal with:
+
+## 1. Spec-Driven Development
+- Created comprehensive documentation detailing authentication flows, wallet integration, medical records management, and access control
+- Defined UI/UX requirements including glassy dark theme with teal accents, responsive layouts, and accessibility standards
+- Outlined state management, security protocols, and user flows
+
+## 2. Rapid Prototyping
+- Used ThinkRoot's in-app preview to test the application across desktop and mobile devices
+- Iterated quickly on design and functionality without writing code
+- Built interactive prototypes for all core features: login/signup, wallet connection, dashboard, medical records upload, access control, and audit logs
+
+## 3. Feature Implementation
+- Developed authentication with email/password and MetaMask wallet integration
+- Created role-based access controls for doctors and patients
+- Implemented tamper-evident audit logs with client-side hash chaining
+- Added AI chatbot assistant for user support
+- Built file sharing with permissions and notifications system
+
+## 4. UI/UX Design
+- Applied consistent design system with glassy dark UI, neon teal accents, and smooth animations
+- Implemented responsive layouts with collapsible sidebar for mobile
+- Ensured WCAG 2.1+ compliance with keyboard navigation and screen reader support
+
+## 5. MVP Delivery
+- Deployed as interactive web app with ThinkRoot's publishing system
+- Enabled real-time testing with live previews
+- Created a production-ready prototype ready for further development
+
+ThinkRoot allowed us to transform our vision into a functional, production-ready application in record time, serving as the perfect foundation for our decentralized health records platform.
