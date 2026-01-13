@@ -138,6 +138,7 @@ DELETE /api/doctor/access-request/:id           - Cancel request
 - **RPC URL**: https://sphinx.shardeum.org/
 - **Currency**: SHM
 - **Explorer**: https://explorer-sphinx.shardeum.org/
+- **Contract address**: 0x96af7aFA67A96f2Edff04032E74288ED8b472932
 
 ### Payment Flow
 1. **Upload Report**: Patient uploads medical report
