@@ -1,0 +1,1672 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>DHRW | Enhanced Medical Platform</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Enhanced CSS -->
+  <link rel="stylesheet" href="enhanced-styles.css">
+</head>
+
+<body>
+
+  <!-- Animated Background -->
+  <div class="animated-bg dynamic-bg secure">
+    <div class="floating-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+      <div class="shape shape-4"></div>
+      <div class="shape shape-5"></div>
+    </div>
+    <div class="particle-container" id="particles"></div>
+  </div>
+
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Cursor Glow Effect -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- ================= ROLE SELECTION PAGE ================= -->
+  <div id="roleSelectionPage" class="auth-wrapper">
+    <div class="auth-card role-card">
+      <div class="logo">
+        <div class="logo-container">
+          <img src="https://i.postimg.cc/rFzLNdf1/logo.png" alt="DHRW Logo" class="logo-img">
+          <div class="logo-glow"></div>
+        </div>
+        <h1 class="logo-title">DHRW</h1>
+        <p class="logo-subtitle">Secure Medical Record Management</p>
+      </div>
+
+      <h2 class="form-title">Choose Your Role</h2>
+      <p class="form-subtitle">Select how you want to access DHRW</p>
+
+      <div class="role-selection-container">
+        <div class="role-option" onclick="selectRole('patient')">
+          <div class="role-icon">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <h3>Patient</h3>
+          <p>Manage your medical records and get AI analysis</p>
+          <ul class="role-features">
+            <li><i class="fa-solid fa-check"></i> Upload medical reports</li>
+            <li><i class="fa-solid fa-check"></i> AI-powered analysis</li>
+            <li><i class="fa-solid fa-check"></i> Access control</li>
+          </ul>
+        </div>
+
+        <div class="role-option" onclick="selectRole('doctor')">
+          <div class="role-icon">
+            <i class="fa-solid fa-user-doctor"></i>
+          </div>
+          <h3>Doctor</h3>
+          <p>Request access to patient records and provide care</p>
+          <ul class="role-features">
+            <li><i class="fa-solid fa-check"></i> Request patient access</li>
+            <li><i class="fa-solid fa-check"></i> View medical records</li>
+            <li><i class="fa-solid fa-check"></i> Patient management</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= DOCTOR LOGIN PAGE ================= -->
+  <div id="doctorLoginPage" class="auth-wrapper hidden">
+    <div class="auth-card">
+      <div class="logo">
+        <div class="logo-container">
+          <img src="https://i.postimg.cc/rFzLNdf1/logo.png" alt="DHRW Logo" class="logo-img">
+          <div class="logo-glow"></div>
+        </div>
+        <h1 class="logo-title">DHRW</h1>
+        <p class="logo-subtitle">Doctor Portal</p>
+      </div>
+
+      <form id="doctorLoginForm" class="auth-form" onsubmit="handleDoctorLogin(event)">
+        <h2 class="form-title">Doctor Sign In</h2>
+        <p class="form-subtitle">Access your professional dashboard</p>
+
+        <div class="input-group">
+          <i class="fa-solid fa-hospital-user input-icon"></i>
+          <input type="text" placeholder="Medical License Number" required class="form-input">
+          <div class="input-highlight"></div>
+        </div>
+
+        <div class="input-group">
+          <i class="fa-solid fa-lock input-icon"></i>
+          <input type="password" placeholder="Password" required class="form-input" id="doctorLoginPassword">
+          <button type="button" class="password-toggle" onclick="togglePassword('doctorLoginPassword')">
+            <i class="fa-solid fa-eye"></i>
+          </button>
+          <div class="input-highlight"></div>
+        </div>
+
+        <button type="submit" class="primary-btn">
+          <span class="btn-text">Doctor Login</span>
+          <div class="btn-loader hidden">
+            <div class="spinner"></div>
+          </div>
+          <div class="btn-success hidden">
+            <i class="fa-solid fa-check"></i>
+          </div>
+        </button>
+
+        <div class="form-footer">
+          <p>Not a doctor? <a href="#" onclick="showRoleSelection()" class="link">Change Role</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= LOGIN PAGE ================= -->
+  <div id="loginPage" class="auth-wrapper hidden">
+    <div class="auth-card">
+
+      <!-- Logo with Animation -->
+      <div class="logo">
+        <div class="logo-container">
+          <img src="https://i.postimg.cc/rFzLNdf1/logo.png" alt="DHRW Logo" class="logo-img">
+          <div class="logo-glow"></div>
+        </div>
+        <h1 class="logo-title">DHRW</h1>
+        <p class="logo-subtitle">Secure Medical Record Management</p>
+      </div>
+
+      <!-- Login Form -->
+      <form id="loginForm" class="auth-form" onsubmit="handleLogin(event)">
+        <h2 class="form-title">Welcome Back</h2>
+        <p class="form-subtitle">Sign in to your secure medical portal</p>
+
+        <div class="input-group">
+          <i class="fa-solid fa-envelope input-icon"></i>
+          <input type="email" placeholder="Email Address" required class="form-input">
+          <div class="input-highlight"></div>
+        </div>
+
+        <div class="input-group">
+          <i class="fa-solid fa-lock input-icon"></i>
+          <input type="password" placeholder="Password" required class="form-input" id="loginPassword">
+          <button type="button" class="password-toggle" onclick="togglePassword('loginPassword')">
+            <i class="fa-solid fa-eye"></i>
+          </button>
+          <div class="input-highlight"></div>
+        </div>
+
+        <button type="submit" class="primary-btn">
+          <span class="btn-text">Sign In</span>
+          <div class="btn-loader hidden">
+            <div class="spinner"></div>
+          </div>
+          <div class="btn-success hidden">
+            <i class="fa-solid fa-check"></i>
+          </div>
+        </button>
+
+        <div class="form-footer">
+          <p>New to DHRW? <a href="#" onclick="showSignup()" class="link">Create Account</a></p>
+        </div>
+      </form>
+
+      <!-- Signup Form -->
+      <form id="signupForm" class="auth-form hidden" onsubmit="handleSignup(event)">
+        <h2 class="form-title">Join DHRW</h2>
+        <p class="form-subtitle">Create your secure medical account</p>
+
+        <div class="input-group">
+          <i class="fa-solid fa-user input-icon"></i>
+          <input type="text" placeholder="Full Name" required class="form-input">
+          <div class="input-highlight"></div>
+        </div>
+
+        <div class="input-group">
+          <i class="fa-solid fa-envelope input-icon"></i>
+          <input type="email" placeholder="Email Address" required class="form-input">
+          <div class="input-highlight"></div>
+        </div>
+
+        <div class="input-group">
+          <i class="fa-solid fa-phone input-icon"></i>
+          <input type="tel" placeholder="Phone Number" required class="form-input">
+          <div class="input-highlight"></div>
+        </div>
+
+        <div class="input-group">
+          <i class="fa-solid fa-lock input-icon"></i>
+          <input type="password" placeholder="Create Password" required class="form-input" id="signupPassword">
+          <button type="button" class="password-toggle" onclick="togglePassword('signupPassword')">
+            <i class="fa-solid fa-eye"></i>
+          </button>
+          <div class="input-highlight"></div>
+        </div>
+
+        <button type="submit" class="primary-btn">
+          <span class="btn-text">Create Account</span>
+          <div class="btn-loader hidden">
+            <div class="spinner"></div>
+          </div>
+          <div class="btn-success hidden">
+            <i class="fa-solid fa-check"></i>
+          </div>
+        </button>
+
+        <div class="form-footer">
+          <p>Already have an account? <a href="#" onclick="showLoginForm()" class="link">Sign In</a></p>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- ================= EMAIL OTP VERIFICATION POPUP ================= -->
+  <div id="otpVerificationPopup" class="otp-popup-overlay hidden">
+    <div class="otp-popup">
+      <div class="otp-header">
+        <div class="otp-icon">
+          <i class="fa-solid fa-envelope-circle-check"></i>
+        </div>
+        <h2 class="otp-title">Verify Your Email</h2>
+        <p class="otp-subtitle">We've sent a 6-digit verification code to your email address</p>
+      </div>
+
+      <form id="otpForm" class="otp-form" onsubmit="handleOTPVerification(event)">
+        <div class="otp-input-container">
+          <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 0)"
+            onkeydown="handleBackspace(this, 0)">
+          <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 1)"
+            onkeydown="handleBackspace(this, 1)">
+          <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 2)"
+            onkeydown="handleBackspace(this, 2)">
+          <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 3)"
+            onkeydown="handleBackspace(this, 3)">
+          <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 4)"
+            onkeydown="handleBackspace(this, 4)">
+          <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 5)"
+            onkeydown="handleBackspace(this, 5)">
+        </div>
+
+        <div class="otp-timer">
+          <p>Code expires in <span id="otpTimer">05:00</span></p>
+        </div>
+
+        <button type="submit" class="otp-verify-btn">
+          <span class="btn-text">Verify Email</span>
+          <div class="btn-loader hidden">
+            <div class="spinner"></div>
+          </div>
+          <div class="btn-success hidden">
+            <i class="fa-solid fa-check"></i>
+          </div>
+        </button>
+
+        <div class="otp-resend">
+          <p>Didn't receive the code? <button type="button" class="resend-btn" onclick="resendOTP()">Resend
+              Code</button></p>
+        </div>
+      </form>
+
+      <button class="otp-close-btn" onclick="closeOTPPopup()">
+        <i class="fa-solid fa-times"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= DASHBOARD ================= -->
+  <div id="dashboardPage" class="dashboard-wrapper hidden">
+
+    <!-- Enhanced Header -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-logo">
+          <img src="https://i.postimg.cc/rFzLNdf1/logo.png" alt="DHRW">
+          <div class="brand-glow"></div>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">DHRW</span>
+          <span class="brand-tagline">Medical Records</span>
+        </div>
+      </div>
+
+      <!-- Glassmorphism Navigation Bar - Centered in Header -->
+      <nav class="glassmorphism-navbar">
+        <div class="nav-pills">
+          <a href="#" class="nav-pill active" onclick="showSection('dashboard')" data-section="dashboard">
+            <div class="pill-icon">
+              <i class="fa-solid fa-chart-pie"></i>
+            </div>
+            <span class="pill-text">Dashboard</span>
+            <div class="pill-glow"></div>
+          </a>
+
+          <a href="#" class="nav-pill" onclick="showSection('records')" data-section="records">
+            <div class="pill-icon">
+              <i class="fa-solid fa-file-medical"></i>
+            </div>
+            <span class="pill-text">Medical Records</span>
+            <div class="pill-glow"></div>
+          </a>
+
+          <a href="#" class="nav-pill" onclick="showSection('access')" data-section="access">
+            <div class="pill-icon">
+              <i class="fa-solid fa-user-lock"></i>
+            </div>
+            <span class="pill-text">Access Control</span>
+            <div class="pill-glow"></div>
+          </a>
+
+          <a href="#" class="nav-pill" onclick="showSection('audit')" data-section="audit">
+            <div class="pill-icon">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+            </div>
+            <span class="pill-text">Audit Logs</span>
+            <div class="pill-glow"></div>
+          </a>
+
+          <a href="#" class="nav-pill" onclick="showSection('ai-analysis')" data-section="ai-analysis">
+            <div class="pill-icon">
+              <i class="fa-solid fa-brain"></i>
+            </div>
+            <span class="pill-text">AI Analysis</span>
+            <div class="pill-glow"></div>
+          </a>
+        </div>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Wallet Connection -->
+        <div class="wallet-container">
+          <div class="wallet-status" id="walletStatus">
+            <div class="status-dot offline" id="statusDot"></div>
+            <span class="status-text" id="statusText">Disconnected</span>
+          </div>
+          <button class="wallet-btn" id="walletBtn" onclick="toggleWallet()">
+            <i class="fab fa-ethereum"></i>
+            <span>Connect Wallet</span>
+          </button>
+        </div>
+
+        <!-- User Menu -->
+        <div class="user-menu">
+          <button class="user-btn" onclick="toggleUserMenu()">
+            <div class="user-avatar">
+              <img id="headerAvatarImage" src="https://via.placeholder.com/40/2dd4bf/ffffff?text=User"
+                alt="User Avatar" />
+              <i class="fa-solid fa-user" id="headerAvatarIcon"></i>
+            </div>
+            <span class="user-name">John Doe</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="user-dropdown hidden" id="userDropdown">
+            <a href="#" class="dropdown-item" onclick="showSection('profile'); toggleUserMenu();">
+              <i class="fa-solid fa-user-gear"></i>
+              Profile Settings
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item logout" onclick="handleLogout()">
+              <i class="fa-solid fa-right-from-bracket"></i>
+              Logout
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="main-layout">
+      <!-- Content Area -->
+      <main class="content-area full-width"></main>
+
+      <!-- Dashboard Section -->
+      <section id="dashboard" class="content-section active">
+        <div class="section-header">
+          <h1 class="section-title">Dashboard Overview</h1>
+          <p class="section-subtitle">Monitor your medical records and access activity</p>
+
+
+        </div>
+
+        <!-- About DHRW Info Section -->
+        <div class="about-dhrw-container" id="aboutDhrwContainer">
+
+          <!-- Hero Section -->
+          <div class="hero-section section-reveal">
+            <div class="hero-content">
+              <h1 class="hero-title" id="heroTitle">DHRW</h1>
+              <p class="hero-tagline">Your Health Data. Your Control. Complete Transparency.</p>
+              <div class="cursor-aware-glow" id="cursorAwareGlow"></div>
+            </div>
+          </div>
+
+          <!-- Overview Content -->
+          <div class="overview-content section-reveal">
+            <div class="overview-card section-blur-transition">
+              <div class="overview-text">
+                <p class="overview-description">
+                  DHRW (Decentralized Health Record Wallet) is a secure, user-centric web platform designed to help
+                  individuals store, manage, and share their medical records with complete control and transparency. The
+                  application empowers users to own their health data while ensuring privacy, security, and seamless
+                  accessibility.
+                </p>
+
+                <p class="overview-description">
+                  DHRW allows users to upload and organize medical documents such as prescriptions, lab reports, scans,
+                  and treatment histories in one centralized dashboard. Through a permission-based access system, users
+                  can grant or revoke doctors' access to their records at any time, ensuring that sensitive information
+                  is only shared with explicit consent.
+                </p>
+
+                <p class="overview-description">
+                  The platform features detailed audit logs that track every interaction with the data—who accessed it,
+                  when, and for what purpose—providing full transparency and accountability. This builds trust between
+                  patients and healthcare providers. With its modern UI, intuitive navigation, and Web3-ready wallet
+                  integration, DHRW combines cutting-edge technology with healthcare needs to eliminate data silos,
+                  prevent unauthorized access, and give users complete ownership of their medical identity.
+                </p>
+              </div>
+
+              <!-- Key Highlights -->
+              <div class="key-highlights section-reveal">
+                <h3 class="highlights-title">Key Features</h3>
+                <div class="highlights-grid">
+                  <div class="highlight-item">
+                    <div class="highlight-icon">
+                      <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div class="highlight-content">
+                      <h4>Secure Document Storage</h4>
+                      <p>Upload and organize prescriptions, lab reports, scans, and treatment histories</p>
+                    </div>
+                  </div>
+
+                  <div class="highlight-item">
+                    <div class="highlight-icon">
+                      <i class="fa-solid fa-user-lock"></i>
+                    </div>
+                    <div class="highlight-content">
+                      <h4>Permission-Based Access</h4>
+                      <p>Grant or revoke doctors' access with explicit consent control</p>
+                    </div>
+                  </div>
+
+                  <div class="highlight-item">
+                    <div class="highlight-icon">
+                      <i class="fa-solid fa-clock-rotate-left"></i>
+                    </div>
+                    <div class="highlight-content">
+                      <h4>Detailed Audit Logs</h4>
+                      <p>Track every interaction - who accessed data, when, and for what purpose</p>
+                    </div>
+                  </div>
+
+                  <div class="highlight-item">
+                    <div class="highlight-icon">
+                      <i class="fa-solid fa-database"></i>
+                    </div>
+                    <div class="highlight-content">
+                      <h4>Centralized Dashboard</h4>
+                      <p>All medical records organized in one secure, accessible location</p>
+                    </div>
+                  </div>
+
+                  <div class="highlight-item">
+                    <div class="highlight-icon">
+                      <i class="fa-solid fa-wallet"></i>
+                    </div>
+                    <div class="highlight-content">
+                      <h4>Web3 Integration</h4>
+                      <p>Modern UI with Web3-ready wallet integration for enhanced security</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Medical Records Section -->
+      <section id="records" class="content-section">
+        <div class="section-header">
+          <h1 class="section-title">Medical Records</h1>
+          <p class="section-subtitle">Securely upload and manage your medical documents</p>
+        </div>
+
+        <!-- Upload Area -->
+        <div class="upload-section">
+          <div class="upload-area" id="uploadArea">
+            <div class="upload-icon">
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+            </div>
+            <h3>Upload Medical Records</h3>
+            <p>Drag and drop files here or click to browse</p>
+            <button class="upload-btn" onclick="triggerFileUpload()">
+              <i class="fa-solid fa-plus"></i>
+              Choose Files
+            </button>
+            <input type="file" id="fileInput" multiple accept=".pdf,.jpg,.jpeg,.png,.docx" style="display: none;">
+            <div class="upload-info">
+              <small>Supported formats: PDF, JPG, PNG, DOCX (Max 10MB each)</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Records Table -->
+        <div class="records-section">
+          <div class="records-header">
+            <h2>Your Medical Records</h2>
+            <div class="records-filters">
+              <button class="filter-btn active" data-filter="all">All</button>
+              <button class="filter-btn" data-filter="recent">Recent</button>
+              <button class="filter-btn" data-filter="shared">Shared</button>
+            </div>
+          </div>
+          <div class="records-table-container">
+            <table class="records-table">
+              <thead>
+                <tr>
+                  <th>File Name</th>
+                  <th>Type</th>
+                  <th>Upload Date</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="recordsTableBody">
+                <!-- Records will be populated by JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Access Control Section -->
+      <section id="access" class="content-section">
+        <div class="section-header">
+          <h1 class="section-title">Access Control</h1>
+          <p class="section-subtitle">Manage doctor access requests to your medical records</p>
+        </div>
+
+        <!-- Access Requests -->
+        <div class="access-section">
+          <div class="access-header">
+            <h2>Pending Access Requests</h2>
+            <div class="access-stats">
+              <span class="stat-badge" id="pendingCount">0 Pending</span>
+              <span class="stat-badge approved" id="approvedCount">0 Approved</span>
+            </div>
+          </div>
+
+          <div class="access-table-container">
+            <table class="access-table">
+              <thead>
+                <tr>
+                  <th>Doctor</th>
+                  <th>Specialization</th>
+                  <th>Requested Record</th>
+                  <th>Request Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="accessTableBody">
+                <!-- Access requests will be populated by JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Audit Logs Section -->
+      <section id="audit" class="content-section">
+        <div class="section-header">
+          <h1 class="section-title">Audit Logs</h1>
+          <p class="section-subtitle">Track all access and modifications to your medical records</p>
+        </div>
+
+        <!-- Audit Filters -->
+        <div class="audit-filters">
+          <div class="filter-group">
+            <label>Date Range:</label>
+            <select class="filter-select">
+              <option>Last 7 days</option>
+              <option>Last 30 days</option>
+              <option>Last 3 months</option>
+              <option>All time</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>Action Type:</label>
+            <select class="filter-select">
+              <option>All actions</option>
+              <option>Viewed</option>
+              <option>Downloaded</option>
+              <option>Approved</option>
+              <option>Rejected</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Audit Table -->
+        <div class="audit-section">
+          <div class="audit-table-container">
+            <table class="audit-table">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>Doctor</th>
+                  <th>Medical Record</th>
+                  <th>Action</th>
+                  <th>IP Address</th>
+                </tr>
+              </thead>
+              <tbody id="auditTableBody">
+                <!-- Audit logs will be populated by JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- AI Analysis Section -->
+      <section id="ai-analysis" class="content-section">
+        <div class="section-header">
+          <h1 class="section-title">AI Medical Analysis</h1>
+          <p class="section-subtitle">Upload your medical reports for AI-powered analysis and insights</p>
+        </div>
+
+        <!-- Wallet Warning Banner -->
+        <div id="aiWalletWarning" class="wallet-warning-banner hidden">
+          <div class="banner-content">
+            <i class="fa-solid fa-wallet"></i>
+            <div class="banner-text">
+              <h3>Connect Your Wallet</h3>
+              <p>Connect to Shardeum network to pay for AI analysis services</p>
+            </div>
+          </div>
+          <button class="banner-btn" onclick="connectWallet()">
+            <i class="fa-solid fa-link"></i> Connect to Shardeum
+          </button>
+        </div>
+
+        <!-- Pricing Cards -->
+        <div class="ai-pricing-section">
+          <h2 class="ai-section-title">Choose Your Analysis Type</h2>
+
+          <div class="pricing-grid">
+            <!-- Basic Plan -->
+            <div class="pricing-card" onclick="selectAiPlan('basic', '0.1')">
+              <div class="card-header">
+                <h3>Basic Analysis</h3>
+                <div class="price">0.1 SHM</div>
+              </div>
+              <ul class="feature-list">
+                <li><i class="fa-solid fa-check"></i> Key findings summary</li>
+                <li><i class="fa-solid fa-check"></i> Basic recommendations</li>
+                <li><i class="fa-solid fa-check"></i> Normal range indicators</li>
+                <li><i class="fa-solid fa-check"></i> Simple risk assessment</li>
+              </ul>
+              <button class="select-plan-btn" id="btn-basic">Select Basic</button>
+            </div>
+
+            <!-- Detailed Plan -->
+            <div class="pricing-card popular" onclick="selectAiPlan('detailed', '0.25')">
+              <div class="popular-tag">Most Popular</div>
+              <div class="card-header">
+                <h3>Detailed Analysis</h3>
+                <div class="price">0.25 SHM</div>
+              </div>
+              <ul class="feature-list">
+                <li><i class="fa-solid fa-check"></i> Comprehensive findings</li>
+                <li><i class="fa-solid fa-check"></i> Detailed recommendations</li>
+                <li><i class="fa-solid fa-check"></i> Risk factor analysis</li>
+                <li><i class="fa-solid fa-check"></i> Follow-up suggestions</li>
+                <li><i class="fa-solid fa-check"></i> Trend analysis</li>
+              </ul>
+              <button class="select-plan-btn" id="btn-detailed">Select Detailed</button>
+            </div>
+
+            <!-- Comprehensive Plan -->
+            <div class="pricing-card" onclick="selectAiPlan('comprehensive', '0.5')">
+              <div class="card-header">
+                <h3>Comprehensive Analysis</h3>
+                <div class="price">0.5 SHM</div>
+              </div>
+              <ul class="feature-list">
+                <li><i class="fa-solid fa-check"></i> Complete medical review</li>
+                <li><i class="fa-solid fa-check"></i> Multiple diagnosis possibilities</li>
+                <li><i class="fa-solid fa-check"></i> Lifestyle recommendations</li>
+                <li><i class="fa-solid fa-check"></i> Specialist referral suggestions</li>
+                <li><i class="fa-solid fa-check"></i> Long-term health planning</li>
+                <li><i class="fa-solid fa-check"></i> Drug interaction analysis</li>
+              </ul>
+              <button class="select-plan-btn" id="btn-comprehensive">Select Comprehensive</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upload Section -->
+        <div class="ai-upload-section">
+          <h2 class="ai-section-title">Upload Medical Report</h2>
+          <div class="ai-upload-area" id="aiUploadArea" onclick="document.getElementById('aiFileInput').click()">
+            <div class="upload-icon-large">
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+            </div>
+            <h3>Drop your medical report here</h3>
+            <p>or click to browse files</p>
+            <input type="file" id="aiFileInput" accept=".pdf,.jpg,.png,.docx" style="display: none;"
+              onchange="handleAiFileSelect(event)">
+            <p class="file-types">Supported: PDF, JPG, PNG, DOCX (Max 10MB)</p>
+          </div>
+
+          <!-- Selected File Display -->
+          <div id="aiSelectedFile" class="selected-file-banner hidden">
+            <div class="file-info">
+              <i class="fa-solid fa-file-lines"></i>
+              <div>
+                <h4 id="aiFileName">report.pdf</h4>
+                <p id="aiFileSize">2.5 MB</p>
+              </div>
+            </div>
+            <button class="remove-file-btn" onclick="clearAiFile()">
+              <i class="fa-solid fa-circle-xmark"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Action Footer -->
+        <div class="ai-action-footer">
+          <div class="selected-summary">
+            <span>Selected Analysis Type:</span>
+            <strong id="selectedPlanDisplay">None</strong>
+          </div>
+          <div class="cost-summary">
+            <span>Cost:</span>
+            <strong id="selectedCostDisplay">0 SHM</strong>
+          </div>
+          <button id="payAnalyzeBtn" class="pay-analyze-btn" onclick="payAndAnalyze()" disabled>
+            Pay & Analyze
+          </button>
+        </div>
+
+        <!-- Analysis Result (Hidden initially) -->
+        <div id="aiResultArea" class="ai-result-area hidden">
+          <div class="ai-loader" id="aiLoader">
+            <div class="ai-pulse"></div>
+            <p>Analyzing document with Shardeum AI...</p>
+          </div>
+          <div class="ai-result-content hidden" id="aiResultContent">
+            <h3>Analysis Complete</h3>
+            <div class="result-card">
+              <h4>Key Insights</h4>
+              <p>Based on the uploaded report, the parameters indicate normal liver function with slightly elevated
+                cholesterol levels. Recommendation: Reduce saturated fat intake and schedule a follow-up in 3 months.
+              </p>
+            </div>
+            <button class="download-report-btn">Download Full Report</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Profile Settings Section -->
+      <section id="profile" class="content-section">
+        <div class="section-header">
+          <h1 class="section-title">Profile Settings</h1>
+          <p class="section-subtitle">Manage your personal information and account preferences</p>
+        </div>
+
+        <div class="profile-container">
+          <!-- Personal Information -->
+          <div class="profile-section">
+            <div class="profile-section-header">
+              <h2 class="profile-section-title">
+                <i class="fa-solid fa-user"></i>
+                Personal Information
+              </h2>
+            </div>
+            <div class="profile-form-grid">
+              <div class="profile-field">
+                <label>Full Name</label>
+                <div class="editable-field">
+                  <input type="text" id="fullName" placeholder="Enter your full name" />
+                  <button class="edit-btn" onclick="toggleEdit('fullName')">
+                    <i class="fa-solid fa-edit"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="profile-field">
+                <label>Username</label>
+                <div class="editable-field">
+                  <input type="text" id="username" placeholder="Enter username" />
+                  <button class="edit-btn" onclick="toggleEdit('username')">
+                    <i class="fa-solid fa-edit"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="profile-field">
+                <label>Email Address</label>
+                <div class="editable-field">
+                  <input type="email" id="email" placeholder="Enter email address" />
+                  <button class="edit-btn" onclick="toggleEdit('email')">
+                    <i class="fa-solid fa-edit"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="profile-field">
+                <label>Phone Number</label>
+                <div class="editable-field">
+                  <input type="tel" id="phone" placeholder="Enter phone number" />
+                  <button class="edit-btn" onclick="toggleEdit('phone')">
+                    <i class="fa-solid fa-edit"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="profile-field">
+                <label>Date of Birth</label>
+                <div class="editable-field">
+                  <input type="date" id="dateOfBirth" />
+                  <button class="edit-btn" onclick="toggleEdit('dateOfBirth')">
+                    <i class="fa-solid fa-edit"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="profile-field">
+                <label>Gender (Optional)</label>
+                <div class="editable-field">
+                  <select id="gender">
+                    <option value="">Select gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                    <option value="prefer-not-to-say">Prefer not to say</option>
+                  </select>
+                  <button class="edit-btn" onclick="toggleEdit('gender')">
+                    <i class="fa-solid fa-edit"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="profile-field">
+                <label>Blood Group (Optional)</label>
+                <div class="editable-field">
+                  <select id="bloodGroup">
+                    <option value="">Select blood group</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                  </select>
+                  <button class="edit-btn" onclick="toggleEdit('bloodGroup')">
+                    <i class="fa-solid fa-edit"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="profile-field full-width">
+                <label>Emergency Contact</label>
+                <div class="emergency-contact">
+                  <div class="editable-field">
+                    <input type="text" id="emergencyName" placeholder="Emergency contact name" />
+                    <button class="edit-btn" onclick="toggleEdit('emergencyName')">
+                      <i class="fa-solid fa-edit"></i>
+                    </button>
+                  </div>
+                  <div class="editable-field">
+                    <input type="tel" id="emergencyPhone" placeholder="Emergency contact number" />
+                    <button class="edit-btn" onclick="toggleEdit('emergencyPhone')">
+                      <i class="fa-solid fa-edit"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="profile-avatar-section">
+              <div class="avatar-container">
+                <div class="avatar-preview">
+                  <img id="avatarImage" src="https://via.placeholder.com/120/2dd4bf/ffffff?text=User"
+                    alt="Profile Avatar" />
+                  <div class="avatar-overlay">
+                    <i class="fa-solid fa-camera"></i>
+                  </div>
+                </div>
+                <input type="file" id="avatarUpload" accept="image/*" style="display: none;"
+                  onchange="handleAvatarUpload(event)" />
+                <button class="avatar-btn" onclick="document.getElementById('avatarUpload').click()">
+                  Change Avatar
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Account Details -->
+          <div class="profile-section">
+            <div class="profile-section-header">
+              <h2 class="profile-section-title">
+                <i class="fa-solid fa-id-card"></i>
+                Account Details
+              </h2>
+            </div>
+            <div class="profile-info-grid">
+              <div class="info-item">
+                <label>User ID</label>
+                <span id="userId">DHRW-123456789</span>
+              </div>
+              <div class="info-item">
+                <label>Wallet Address</label>
+                <span id="walletAddress">Not Connected</span>
+              </div>
+              <div class="info-item">
+                <label>Account Creation Date</label>
+                <span id="creationDate">January 15, 2024</span>
+              </div>
+              <div class="info-item">
+                <label>Last Login Time</label>
+                <span id="lastLogin">Today, 2:30 PM</span>
+              </div>
+              <div class="info-item">
+                <label>Verification Status</label>
+                <span id="verificationStatus" class="status-badge verified">
+                  <i class="fa-solid fa-check-circle"></i>
+                  Verified
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Privacy Controls -->
+          <div class="profile-section">
+            <div class="profile-section-header">
+              <h2 class="profile-section-title">
+                <i class="fa-solid fa-shield-halved"></i>
+                Privacy Controls
+              </h2>
+            </div>
+            <div class="privacy-controls">
+              <div class="control-item">
+                <div class="control-info">
+                  <label>Default Access Permission Level</label>
+                  <p>Set the default permission level for new doctor access requests</p>
+                </div>
+                <select id="defaultPermission" class="control-select">
+                  <option value="limited">Limited Access</option>
+                  <option value="full">Full Access</option>
+                </select>
+              </div>
+
+              <div class="control-item">
+                <div class="control-info">
+                  <label>Auto-expire Doctor Access</label>
+                  <p>Automatically revoke doctor access after specified time</p>
+                </div>
+                <select id="autoExpire" class="control-select">
+                  <option value="1">1 Hour</option>
+                  <option value="6">6 Hours</option>
+                  <option value="12">12 Hours</option>
+                  <option value="24">24 Hours</option>
+                  <option value="48">48 Hours</option>
+                  <option value="72">72 Hours</option>
+                  <option value="90">90 Hours</option>
+                  <option value="never">Never</option>
+                </select>
+              </div>
+
+              <div class="control-item">
+                <div class="control-info">
+                  <label>Allow Access Requests</label>
+                  <p>Enable doctors to request access to your medical records</p>
+                </div>
+                <div class="toggle-switch">
+                  <input type="checkbox" id="allowRequests" checked />
+                  <label for="allowRequests" class="toggle-label"></label>
+                </div>
+              </div>
+
+              <div class="control-item">
+                <div class="control-info">
+                  <label>Anonymous Mode</label>
+                  <p>Hide personal identity from doctors (show only medical data)</p>
+                </div>
+                <div class="toggle-switch">
+                  <input type="checkbox" id="anonymousMode" onchange="toggleAnonymousMode()" />
+                  <label for="anonymousMode" class="toggle-label"></label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notification Preferences -->
+          <div class="profile-section">
+            <div class="profile-section-header">
+              <h2 class="profile-section-title">
+                <i class="fa-solid fa-bell"></i>
+                Notification Preferences
+              </h2>
+            </div>
+            <div class="notification-controls">
+              <div class="notification-group">
+                <h3>Notification Methods</h3>
+                <div class="control-item">
+                  <div class="control-info">
+                    <label>Email Notifications</label>
+                    <p>Receive notifications via email</p>
+                  </div>
+                  <div class="toggle-switch">
+                    <input type="checkbox" id="emailNotifications" checked />
+                    <label for="emailNotifications" class="toggle-label"></label>
+                  </div>
+                </div>
+
+                <div class="control-item">
+                  <div class="control-info">
+                    <label>App Notifications</label>
+                    <p>Receive push notifications in the app</p>
+                  </div>
+                  <div class="toggle-switch">
+                    <input type="checkbox" id="appNotifications" checked />
+                    <label for="appNotifications" class="toggle-label"></label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="notification-group">
+                <h3>Alert Types</h3>
+                <div class="alert-checkboxes">
+                  <label class="checkbox-item">
+                    <input type="checkbox" id="newAccessRequest" checked />
+                    <span class="checkmark"></span>
+                    New access requests
+                  </label>
+                  <label class="checkbox-item">
+                    <input type="checkbox" id="recordViewed" checked />
+                    <span class="checkmark"></span>
+                    Record viewed
+                  </label>
+                  <label class="checkbox-item">
+                    <input type="checkbox" id="permissionRevoked" checked />
+                    <span class="checkmark"></span>
+                    Permission revoked
+                  </label>
+                  <label class="checkbox-item">
+                    <input type="checkbox" id="securityLogin" checked />
+                    <span class="checkmark"></span>
+                    Security login alerts
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Linked Accounts -->
+          <div class="profile-section">
+            <div class="profile-section-header">
+              <h2 class="profile-section-title">
+                <i class="fa-solid fa-link"></i>
+                Linked Accounts
+              </h2>
+            </div>
+            <div class="linked-accounts">
+              <div class="account-item">
+                <div class="account-info">
+                  <div class="account-icon">
+                    <i class="fab fa-ethereum"></i>
+                  </div>
+                  <div class="account-details">
+                    <h4>MetaMask Wallet</h4>
+                    <p id="connectedWallet">Not Connected</p>
+                  </div>
+                </div>
+                <button class="connect-btn" id="walletConnectBtn" onclick="toggleWalletConnection()">
+                  Connect
+                </button>
+              </div>
+
+              <div class="account-item">
+                <div class="account-info">
+                  <div class="account-icon">
+                    <i class="fab fa-google"></i>
+                  </div>
+                  <div class="account-details">
+                    <h4>Google Account</h4>
+                    <p>Not Connected</p>
+                  </div>
+                </div>
+                <button class="connect-btn">Connect</button>
+              </div>
+
+              <div class="account-item">
+                <div class="account-info">
+                  <div class="account-icon">
+                    <i class="fab fa-apple"></i>
+                  </div>
+                  <div class="account-details">
+                    <h4>Apple ID</h4>
+                    <p>Not Connected</p>
+                  </div>
+                </div>
+                <button class="connect-btn">Connect</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Data & Account Controls -->
+          <div class="profile-section">
+            <div class="profile-section-header">
+              <h2 class="profile-section-title">
+                <i class="fa-solid fa-database"></i>
+                Data & Account Controls
+              </h2>
+            </div>
+            <div class="data-controls">
+              <div class="control-group">
+                <h3>Data Management</h3>
+                <div class="action-buttons">
+                  <button class="action-btn secondary" onclick="downloadData()">
+                    <i class="fa-solid fa-download"></i>
+                    Download My Data
+                  </button>
+                  <button class="action-btn secondary" onclick="exportAccessHistory()">
+                    <i class="fa-solid fa-file-export"></i>
+                    Export Access History
+                  </button>
+                  <button class="action-btn secondary" onclick="clearSessionHistory()">
+                    <i class="fa-solid fa-broom"></i>
+                    Clear Session History
+                  </button>
+                </div>
+              </div>
+
+              <div class="control-group danger-zone">
+                <h3>Danger Zone</h3>
+                <div class="action-buttons">
+                  <button class="action-btn danger" onclick="confirmDeleteAccount()">
+                    <i class="fa-solid fa-trash"></i>
+                    Delete Account
+                  </button>
+                </div>
+                <p class="warning-text">
+                  <i class="fa-solid fa-exclamation-triangle"></i>
+                  This action cannot be undone. All your data will be permanently deleted.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Save Changes Button -->
+          <div class="profile-actions">
+            <button class="save-btn" onclick="saveProfileChanges()">
+              <i class="fa-solid fa-save"></i>
+              Save Changes
+            </button>
+            <button class="cancel-btn" onclick="cancelProfileChanges()">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ================= DOCTOR DASHBOARD ================= -->
+  <div id="doctorDashboardPage" class="dashboard-wrapper hidden">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-logo">
+          <img src="https://i.postimg.cc/rFzLNdf1/logo.png" alt="DHRW">
+          <div class="brand-glow"></div>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">DHRW</span>
+          <span class="brand-tagline">Doctor Portal</span>
+        </div>
+      </div>
+
+      <nav class="glassmorphism-navbar">
+        <div class="nav-pills">
+          <a href="#" class="nav-pill active" onclick="showDoctorSection('dr-dashboard')" data-section="dr-dashboard">
+            <div class="pill-icon"><i class="fa-solid fa-chart-line"></i></div>
+            <span class="pill-text">Dashboard</span>
+            <div class="pill-glow"></div>
+          </a>
+          <a href="#" class="nav-pill" onclick="showDoctorSection('dr-requests')" data-section="dr-requests">
+            <div class="pill-icon"><i class="fa-solid fa-user-plus"></i></div>
+            <span class="pill-text">Patient Requests</span>
+            <div class="pill-glow"></div>
+          </a>
+          <a href="#" class="nav-pill" onclick="showDoctorSection('dr-records')" data-section="dr-records">
+            <div class="pill-icon"><i class="fa-solid fa-folder-medical"></i></div>
+            <span class="pill-text">Patient Records</span>
+            <div class="pill-glow"></div>
+          </a>
+          <a href="#" class="nav-pill" onclick="showDoctorSection('dr-consultations')" data-section="dr-consultations">
+            <div class="pill-icon"><i class="fa-solid fa-stethoscope"></i></div>
+            <span class="pill-text">Consultations</span>
+            <div class="pill-glow"></div>
+          </a>
+          <a href="#" class="nav-pill" onclick="showDoctorSection('dr-profile')" data-section="dr-profile">
+            <div class="pill-icon"><i class="fa-solid fa-user-md"></i></div>
+            <span class="pill-text">Profile</span>
+            <div class="pill-glow"></div>
+          </a>
+        </div>
+      </nav>
+
+      <div class="header-actions">
+        <div class="user-menu">
+          <button class="user-btn" onclick="toggleDoctorUserMenu()">
+            <div class="user-avatar">
+              <i class="fa-solid fa-user-doctor"></i>
+            </div>
+            <span class="user-name">Dr. John Smith</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="user-dropdown hidden" id="doctorUserDropdown">
+            <a href="#" class="dropdown-item logout" onclick="handleLogout()">
+              <i class="fa-solid fa-right-from-bracket"></i>
+              Logout
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-layout">
+      <main class="content-area full-width">
+        <!-- DOCTOR DASHBOARD HOME -->
+        <section id="dr-dashboard" class="content-section active">
+          <div class="section-header">
+            <h1 class="section-title">Doctor Dashboard</h1>
+            <p class="section-subtitle">Overview of your patients and recent activity</p>
+          </div>
+
+          <!-- Stats Row -->
+          <div class="doctor-stats-grid">
+            <!-- Card 1 -->
+            <div class="stat-card">
+              <div class="stat-icon-wrapper">
+                <i class="fa-solid fa-users"></i>
+              </div>
+              <div class="stat-value">0</div>
+              <div class="stat-label">Total Patients</div>
+              <div class="stat-trend positive">+3 this week</div>
+            </div>
+            <!-- Card 2 -->
+            <div class="stat-card">
+              <div class="stat-icon-wrapper">
+                <i class="fa-solid fa-clock"></i>
+              </div>
+              <div class="stat-value">0</div>
+              <div class="stat-label">Pending Requests</div>
+              <div class="stat-trend neutral">Awaiting approval</div>
+            </div>
+            <!-- Card 3 -->
+            <div class="stat-card">
+              <div class="stat-icon-wrapper">
+                <i class="fa-solid fa-calendar-check"></i>
+              </div>
+              <div class="stat-value">0</div>
+              <div class="stat-label">Today's Consultations</div>
+              <div class="stat-trend positive">2 completed</div>
+            </div>
+            <!-- Card 4 -->
+            <div class="stat-card">
+              <div class="stat-icon-wrapper">
+                <i class="fa-solid fa-file-medical-alt"></i>
+              </div>
+              <div class="stat-value">156</div>
+              <div class="stat-label">Records Accessed</div>
+              <div class="stat-trend neutral">This month</div>
+            </div>
+          </div>
+
+          <!-- Main Dashboard Grid (2 Columns) -->
+          <div class="dashboard-main-grid">
+            <!-- Left Column: Recent Activity -->
+            <div class="dashboard-panel">
+              <div class="panel-header">
+                <h2 class="panel-title">Recent Patient Activity</h2>
+                <button class="view-all-btn">View All</button>
+              </div>
+
+              <div class="activity-list">
+                <!-- Item 1 -->
+                <div class="activity-item">
+                  <div class="activity-icon">
+                    <i class="fa-solid fa-folder"></i>
+                  </div>
+                  <div class="activity-info">
+                    <div class="activity-text"><strong>Sarah Johnson</strong> - Accessed medical records</div>
+                    <div class="activity-time">2 hours ago</div>
+                  </div>
+                </div>
+                <!-- Item 2 -->
+                <div class="activity-item">
+                  <div class="activity-icon">
+                    <i class="fa-solid fa-stethoscope"></i>
+                  </div>
+                  <div class="activity-info">
+                    <div class="activity-text"><strong>Michael Brown</strong> - Completed consultation</div>
+                    <div class="activity-time">4 hours ago</div>
+                  </div>
+                </div>
+                <!-- Item 3 -->
+                <div class="activity-item">
+                  <div class="activity-icon">
+                    <i class="fa-solid fa-check-circle"></i>
+                  </div>
+                  <div class="activity-info">
+                    <div class="activity-text"><strong>Emily Davis</strong> - Access request approved</div>
+                    <div class="activity-time">6 hours ago</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Upcoming Consultations -->
+            <div class="dashboard-panel">
+              <div class="panel-header">
+                <h2 class="panel-title">Upcoming Consultations</h2>
+                <button class="view-all-btn">View All</button>
+              </div>
+
+              <div class="consultation-list">
+                <!-- Consult 1 -->
+                <div class="consultation-card">
+                  <div class="consult-time">2:00 PM</div>
+                  <div class="consult-info">
+                    <span class="consult-patient">Alice Wilson</span>
+                    <span class="consult-type">Follow-up</span>
+                  </div>
+                  <div class="status-badge-capsule confirmed">Confirmed</div>
+                </div>
+
+                <!-- Consult 2 -->
+                <div class="consultation-card">
+                  <div class="consult-time">3:30 PM</div>
+                  <div class="consult-info">
+                    <span class="consult-patient">Robert Taylor</span>
+                    <span class="consult-type">Initial Consultation</span>
+                  </div>
+                  <div class="status-badge-capsule pending">Pending</div>
+                </div>
+
+                <!-- Consult 3 -->
+                <div class="consultation-card">
+                  <div class="consult-time">4:15 PM</div>
+                  <div class="consult-info">
+                    <span class="consult-patient">Lisa Anderson</span>
+                    <span class="consult-type">Emergency</span>
+                  </div>
+                  <div class="status-badge-capsule urgent">Urgent</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom: Quick Actions -->
+          <div class="quick-actions-section">
+            <h3>Quick Actions</h3>
+            <div class="quick-actions-grid">
+              <div class="action-card" onclick="showDoctorSection('dr-requests')">
+                <i class="fa-solid fa-user-plus"></i>
+                <span>Request Patient Access</span>
+              </div>
+              <div class="action-card" onclick="showDoctorSection('dr-consultations')">
+                <i class="fa-solid fa-calendar-plus"></i>
+                <span>Schedule Consultation</span>
+              </div>
+              <div class="action-card" onclick="showDoctorSection('dr-records')">
+                <i class="fa-solid fa-folder-open"></i>
+                <span>View Patient Records</span>
+              </div>
+              <div class="action-card">
+                <i class="fa-solid fa-file-invoice"></i>
+                <span>Generate Report</span>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- DOCTOR REQUESTS -->
+        <section id="dr-requests" class="content-section">
+          <div class="section-header">
+            <h1 class="section-title">Patient Access Requests</h1>
+            <p class="section-subtitle">Request access to patient medical records</p>
+          </div>
+          <div class="doctor-card-container">
+            <div class="request-form-card">
+              <h3>Request Patient Access</h3>
+              <div class="form-grid">
+                <div class="input-group">
+                  <label>Patient Email or ID</label>
+                  <input type="text" placeholder="Enter patient email or DHRW ID" class="form-input">
+                </div>
+                <div class="input-group">
+                  <label>Access Duration</label>
+                  <select class="form-select status-select">
+                    <option>1 Hour</option>
+                    <option>24 Hours</option>
+                  </select>
+                </div>
+                <div class="input-group full-width">
+                  <label>Reason for Access</label>
+                  <textarea placeholder="Explain why you need access" class="form-input"></textarea>
+                </div>
+                <div class="input-group">
+                  <label>Access Type</label>
+                  <select class="form-select status-select">
+                    <option>Select access type</option>
+                    <option>View Only</option>
+                  </select>
+                </div>
+                <div class="input-group">
+                  <label>Priority Level</label>
+                  <select class="form-select status-select">
+                    <option>Select priority</option>
+                    <option>Routine</option>
+                  </select>
+                </div>
+              </div>
+              <button class="primary-btn">
+                <span class="btn-text">Send Access Request</span>
+              </button>
+            </div>
+          </div>
+          <div class="requests-list-container space-top">
+            <div class="section-header-row">
+              <h3 class="subsection-title">My Access Requests</h3>
+              <div class="filter-pills">
+                <span class="pill active">All</span>
+                <span class="pill">Pending</span>
+                <span class="pill">Approved</span>
+                <span class="pill">Rejected</span>
+              </div>
+            </div>
+            <div class="records-table-container">
+              <table class="records-table">
+                <thead>
+                  <tr>
+                    <th>Patient</th>
+                    <th>Request Date</th>
+                    <th>Duration</th>
+                    <th>Reason</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="doctorRequestsTable">
+                  <!-- Populated by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- DOCTOR RECORDS -->
+        <section id="dr-records" class="content-section">
+          <div class="section-header">
+            <h1 class="section-title">Patient Records</h1>
+            <p class="section-subtitle">Access and manage patient medical records</p>
+          </div>
+          <div class="doctor-controls space-bottom">
+            <div class="search-wrapper">
+              <i class="fa-solid fa-search search-icon-input"></i>
+              <input type="text" placeholder="Search patients by name, ID, or condition..."
+                class="form-input search-input">
+            </div>
+            <div class="controls-right">
+              <select class="form-select status-select">
+                <option>All Patients</option>
+              </select>
+              <button class="primary-btn small-btn">Export Data</button>
+            </div>
+          </div>
+          <div class="patient-cards-grid" id="patientCardsContainer">
+            <!-- Populated by JS -->
+          </div>
+        </section>
+
+        <!-- DOCTOR CONSULTATIONS -->
+        <section id="dr-consultations" class="content-section">
+          <div class="section-header">
+            <h1 class="section-title">Consultations</h1>
+            <p class="section-subtitle">Manage patient consultations and appointments</p>
+          </div>
+          <div class="consultation-actions space-bottom">
+            <button class="primary-btn center-block"> <i class="fa-solid fa-calendar-plus"></i> Schedule New
+              Consultation</button>
+          </div>
+          <div class="view-toggles space-bottom">
+            <button class="toggle-pill active">Calendar View</button>
+            <button class="toggle-pill">List View</button>
+          </div>
+          <div class="calendar-placeholder">
+            <div class="placeholder-content">
+              <i class="fa-solid fa-calendar-days"></i>
+              <h3>Consultation Calendar</h3>
+              <p>Calendar view will be implemented with a calendar library</p>
+              <button class="primary-btn small-btn"><i class="fa-solid fa-plus"></i> Schedule Consultation</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- DOCTOR PROFILE -->
+        <section id="dr-profile" class="content-section">
+          <div class="section-header">
+            <h1 class="section-title">Doctor Profile</h1>
+            <p class="section-subtitle">Manage your professional information and credentials</p>
+          </div>
+          <div class="profile-cards-container">
+            <div class="profile-detail-card">
+              <div class="card-header">
+                <h3><i class="fa-solid fa-user-doctor"></i> Professional Information</h3>
+              </div>
+              <div class="form-grid layout-2-col">
+                <div class="input-group"><label>Full Name</label><input type="text" value="Dr. John Smith"
+                    class="form-input"></div>
+                <div class="input-group"><label>Medical License Number</label><input type="text" value="xxxxxxxxx"
+                    class="form-input"></div>
+                <div class="input-group"><label>Specialization</label><input type="text" value="Cardiology"
+                    class="form-input"></div>
+                <div class="input-group"><label>Hospital/Clinic</label><input type="text" value="Balamurugan Hospitals"
+                    class="form-input"></div>
+                <div class="input-group"><label>Years of Experience</label><input type="text" value="10"
+                    class="form-input"></div>
+                <div class="input-group"><label>Contact Number</label><input type="text" value="+1 (555) 123-4567"
+                    class="form-input"></div>
+              </div>
+              <div class="avatar-center">
+                <div class="avatar-circle">
+                  <p>Doctor Avatar</p>
+                </div>
+                <button class="small-btn">Change Photo</button>
+              </div>
+            </div>
+
+            <div class="verification-status-card space-top">
+              <h3><i class="fa-solid fa-circle-check"></i> Verification Status</h3>
+              <div class="status-list">
+                <div class="status-row">
+                  <div class="status-info">
+                    <h4>Medical License</h4>
+                    <p>License verification with medical board</p>
+                  </div>
+                  <span class="status-badge verified">VERIFIED</span>
+                </div>
+                <div class="status-row">
+                  <div class="status-info">
+                    <h4>Hospital Affiliation</h4>
+                    <p>Employment verification with hospital</p>
+                  </div>
+                  <span class="status-badge pending">PENDING</span>
+                </div>
+                <div class="status-row">
+                  <div class="status-info">
+                    <h4>Identity Verification</h4>
+                    <p>Government ID verification</p>
+                  </div>
+                  <span class="status-badge verified">VERIFIED</span>
+                </div>
+              </div>
+            </div>
+            <div class="profile-actions-footer">
+              <button class="primary-btn">Save Changes</button>
+              <button class="cancel-btn">Cancel</button>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ================= CHATBOT ================= -->
+  <div class="chatbot-container" id="chatbotContainer">
+    <div class="chatbot-toggle" id="chatbotToggle" onclick="toggleChatbot()">
+      <i class="fa-solid fa-comments"></i>
+      <div class="toggle-pulse"></div>
+    </div>
+
+    <div class="chatbot-window hidden" id="chatbotWindow">
+      <div class="chatbot-header">
+        <div class="chatbot-avatar">
+          <i class="fa-solid fa-robot"></i>
+        </div>
+        <div class="chatbot-info">
+          <h3>DHRW Assistant</h3>
+          <p class="chatbot-status">Online</p>
+        </div>
+        <button class="chatbot-close" onclick="closeChatbot()">
+          <i class="fa-solid fa-times"></i>
+        </button>
+      </div>
+
+      <div class="chatbot-messages" id="chatbotMessages">
+        <!-- Messages will be populated by JavaScript -->
+      </div>
+
+      <div class="chatbot-quick-actions" id="quickActions">
+        <button class="quick-btn" onclick="sendQuickMessage('How do I upload records?')">
+          Upload Help
+        </button>
+        <button class="quick-btn" onclick="sendQuickMessage('How do I connect MetaMask?')">
+          Wallet Help
+        </button>
+        <button class="quick-btn" onclick="sendQuickMessage('How secure is my data?')">
+          Security Info
+        </button>
+      </div>
+
+      <div class="chatbot-input">
+        <input type="text" id="chatInput" placeholder="Ask me anything about DHRW..."
+          onkeypress="handleChatKeypress(event)">
+        <button class="send-btn" onclick="sendMessage()">
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay hidden" id="loadingOverlay">
+    <div class="loading-content">
+      <div class="dhrw-loader">
+        <div class="loader-shield"></div>
+        <p class="loader-text">Loading your secure medical portal...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="enhanced-app.js"></script>
+  <script src="chatbot.js"></script>
+  <script src="animations.js"></script>
+
+</body>
+
+</html>
