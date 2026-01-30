@@ -1,4 +1,4 @@
-# DHRW AI Medical Analysis Platform
+# DHRW Medical Analysis Platform
 
 ## Overview
 
